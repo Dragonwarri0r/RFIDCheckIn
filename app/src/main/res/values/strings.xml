@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RFID签到系统</string>
+
+    <string name="menu_job">签到</string>
+    <string name="menu_add_student">学生管理</string>
+    <string name="menu_view">查看信息</string>
+</resources>
