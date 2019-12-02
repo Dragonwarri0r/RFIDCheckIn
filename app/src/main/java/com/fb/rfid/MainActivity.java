@@ -2,7 +2,9 @@ package com.fb.rfid;
 
 import android.net.Uri;
 import android.os.Bundle;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,23 +29,29 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    mTransaction.hide(now);
-                    mTransaction.show(mCheckInFragment);
-                    now = mCheckInFragment ;
-                    mTransaction.commit();
-                    Toast.makeText(MainActivity.this,"home",Toast.LENGTH_SHORT).show();
+                    if (now != mCheckInFragment) {
+                        mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                        mTransaction.hide(now);
+                        mTransaction.show(mCheckInFragment);
+                        now = mCheckInFragment;
+                        mTransaction.commit();
+                    } else {
+                        Toast.makeText(MainActivity.this, "home", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 case R.id.navigation_add:
-                    mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    mTransaction.hide(now);
-                    mTransaction.show(mAddFragment);
-                    now = mAddFragment;
-                    mTransaction.commit();
-                    Toast.makeText(MainActivity.this,"dash",Toast.LENGTH_SHORT).show();
+                    if (now != mAddFragment) {
+                        mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                        mTransaction.hide(now);
+                        mTransaction.show(mAddFragment);
+                        now = mAddFragment;
+                        mTransaction.commit();
+                    } else {
+                        Toast.makeText(MainActivity.this, "dash", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 case R.id.navigation_view:
-                    Toast.makeText(MainActivity.this,"view",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "view", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
@@ -61,8 +69,8 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
 
         mAddFragment = new AddFragment();
         mCheckInFragment = new CheckInFragment();
-        mTransaction.add(R.id.content,mAddFragment);
-        mTransaction.add(R.id.content,mCheckInFragment);
+        mTransaction.add(R.id.content, mAddFragment);
+        mTransaction.add(R.id.content, mCheckInFragment);
         now = mCheckInFragment;
         mTransaction.hide(mAddFragment);
         mTransaction.commit();
