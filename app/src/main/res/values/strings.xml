@@ -7,4 +7,7 @@
 
     <string name="peoples_here">实际到</string>
     <string name="peoples_should_here">应到</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="your_students">学生们</string>
 </resources>

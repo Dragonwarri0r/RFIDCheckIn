@@ -1,11 +1,13 @@
 package com.fb.rfid.models;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * @author Create By FB
  * @description:
  * @date :2019/11/26 15:08
  */
-public class Student {
+public class Student extends DataSupport {
     private boolean isHere;
     private String name;
     private boolean isMale;

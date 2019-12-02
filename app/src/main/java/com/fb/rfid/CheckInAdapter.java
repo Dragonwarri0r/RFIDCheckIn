@@ -1,6 +1,7 @@
 package com.fb.rfid;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import java.util.List;
  * @description:
  * @date :2019/11/26 15:05
  */
-public class CheckInAdapter extends RecyclerView.Adapter {
+public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHolder> {
 
     private List<Student> students;
     private Context mcontext;
@@ -50,13 +51,28 @@ public class CheckInAdapter extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student,parent,false);
+        final ViewHolder holder = new ViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Student student = students.get(position);
+        if(student.isMale()){
+            holder.tvSex.setText("M");
+        }else{
+            holder.tvSex.setText("F");
+        }
+        holder.tvName.setText(student.getName());
+        holder.tvTime.setText(student.getLastTime());
+        holder.tvId.setText(student.getId());
+        if(student.isHere()){
+            holder.tvTag.setText("Here");
+        }else{
+            holder.tvSex.setText("None");
+        }
 
 
 
