@@ -19,7 +19,8 @@
         android:hint="学号"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="150dp"/>
+        android:minWidth="150dp"
+        android:editable="false"/>
     <EditText
         android:id="@+id/std_sex"
         android:hint="性别"
@@ -46,5 +47,10 @@
             android:text="Cancle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <!--<Button-->
+            <!--android:id="@+id/read"-->
+            <!--android:text="read"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
     </LinearLayout>
 </LinearLayout>

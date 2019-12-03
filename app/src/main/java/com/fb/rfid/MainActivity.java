@@ -1,8 +1,10 @@
 package com.fb.rfid;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.fb.rfid.Utils.NfcUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,10 +77,13 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
         mTransaction.hide(mAddFragment);
         mTransaction.commit();
 
+        NfcUtils nfcUtils = new NfcUtils(this);
+
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }
