@@ -31,6 +31,7 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
         TextView tvTime;
         TextView tvSex;
         TextView tvId;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTag = itemView.findViewById(R.id.stu_tag);
@@ -41,8 +42,8 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(mOnItemChildClickListener != null){
-                        mOnItemChildClickListener.onStudentClick(CheckInAdapter.this,getLayoutPosition());
+                    if (mOnItemChildClickListener != null) {
+                        mOnItemChildClickListener.onStudentClick(CheckInAdapter.this, getLayoutPosition());
                     }
                 }
             });
@@ -52,7 +53,7 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_student, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -60,32 +61,33 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Student student = students.get(position);
-        if(student.isMale()){
+        if (student.isMale()) {
             holder.tvSex.setText("M");
-        }else{
+        } else {
             holder.tvSex.setText("F");
         }
         holder.tvName.setText(student.getName());
         holder.tvTime.setText(student.getLastTime());
-        holder.tvId.setText(student.getId());
-        if(student.isHere()){
+        holder.tvId.setText(student.getIdc());
+        if (student.isHere()) {
             holder.tvTag.setText("Here");
-        }else{
+        } else {
             holder.tvSex.setText("None");
         }
 
 
-
     }
 
-    public CheckInAdapter (List<Student> studentList , Context context){
+    public CheckInAdapter(List<Student> studentList, Context context) {
         students = studentList;
         mcontext = context;
     }
 
     @Override
     public int getItemCount() {
-        return students.size();
+        if (students != null) {
+            return students.size();
+        } else return 0;
     }
 
     public void setOnItemChildClickListener(OnItemChildClickListener listener) {

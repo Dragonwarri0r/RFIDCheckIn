@@ -8,8 +8,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.fb.rfid.Utils.NfcUtils;
+import com.fb.rfid.models.Student;
+
+import java.util.List;
 
 import static com.fb.rfid.Utils.NfcUtils.mPendingIntent;
 
@@ -35,11 +39,18 @@ public class AddStudentDialog extends AppCompatActivity {
         btn_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = ed_name.getText().toString();
-                String id = ed_id.getText().toString();
-                String phone = ed_phone.getText().toString();
+                Student student = new Student();
+                student.setName(ed_name.getText().toString());
+                student.setIdc(ed_id.getText().toString());
+                student.setPhone(ed_phone.getText().toString());
                 String sex = ed_sex.getText().toString();
-
+                if(sex.equals("男")){
+                    student.setMale(true);
+                }else {
+                    student.setMale(false);
+                }
+                Toast.makeText(AddStudentDialog.this,student.getName()+student.getIdc()+student.save(),Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 

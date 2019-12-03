@@ -6,13 +6,21 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.fb.rfid.models.Student;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.litepal.crud.DataSupport;
+
+import java.util.List;
 
 
 /**
@@ -24,14 +32,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  * create an instance of this fragment.
  */
 public class AddFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    RecyclerView recyclerView;
+    CheckInAdapter checkInAdapter;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -51,8 +55,6 @@ public class AddFragment extends Fragment {
     public static AddFragment newInstance(String param1, String param2) {
         AddFragment fragment = new AddFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,8 +63,6 @@ public class AddFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
 
@@ -81,6 +81,15 @@ public class AddFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+        MyApplication myApplication = (MyApplication) getActivity().getApplication();
+
+        recyclerView = view.findViewById(R.id.adf_rv);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        checkInAdapter = new CheckInAdapter(myApplication.getStudents(),getContext());
+        Log.e("fb", "onCreateView: "+myApplication.getStudents() );
+        recyclerView.setAdapter(checkInAdapter);
         return view;
     }
 

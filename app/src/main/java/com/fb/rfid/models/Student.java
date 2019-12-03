@@ -1,5 +1,6 @@
 package com.fb.rfid.models;
 
+import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
 
 /**
@@ -11,7 +12,7 @@ public class Student extends DataSupport {
     private boolean isHere;
     private String name;
     private boolean isMale;
-    private String id;
+    private String idc;
     private String phone;
     private String lastTime;
 
@@ -39,12 +40,12 @@ public class Student extends DataSupport {
         isMale = male;
     }
 
-    public String getId() {
-        return id;
+    public String getIdc() {
+        return idc;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdc(String idc) {
+        this.idc = idc;
     }
 
     public String getPhone() {

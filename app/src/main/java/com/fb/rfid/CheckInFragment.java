@@ -12,11 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class CheckInFragment extends Fragment {
 
     RecyclerView recyclerView;
     View rootView;
+    FloatingActionButton fab_start;
+    Button btn_stop;
 
     private CheckInViewModel mViewModel;
 
@@ -29,6 +35,25 @@ public class CheckInFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.check_in_fragment, container, false);
         recyclerView = rootView.findViewById(R.id.cif_rv);
+
+        fab_start = rootView.findViewById(R.id.fab_start);
+        fab_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"start",Toast.LENGTH_SHORT).show();
+                fab_start.hide();
+                btn_stop.setVisibility(View.VISIBLE);
+            }
+        });
+        btn_stop = rootView.findViewById(R.id.btn_stop);
+        btn_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"stop",Toast.LENGTH_SHORT).show();
+                btn_stop.setVisibility(View.GONE);
+                fab_start.show();
+            }
+        });
 
         return rootView;
     }
