@@ -99,6 +99,17 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
             public boolean handleMessage(@NonNull Message message) {
                 if(message.what == 1){
                     students = myApplication.getStudents();
+                    mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    if(now == mAddFragment){
+                        mTransaction.remove(mAddFragment);
+                        mTransaction.add(R.id.content,mAddFragment);
+                    }else{
+                        mTransaction.remove(mAddFragment);
+                        mTransaction.add(R.id.content,mAddFragment);
+                        mTransaction.hide(mAddFragment);
+                    }
+                    now = mCheckInFragment;
+                    mTransaction.commit();
                 }
                 return true;
             }
