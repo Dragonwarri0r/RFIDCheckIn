@@ -7,7 +7,7 @@ import com.fb.rfid.models.Student;
 import java.util.List;
 
 public class MyApplication extends Application {
-    List<Student> students ;
+    public List<Student> students ;
 
     public List<Student> getStudents() {
         return students;

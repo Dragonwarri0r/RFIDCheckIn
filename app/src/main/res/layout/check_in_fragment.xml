@@ -85,7 +85,7 @@
         android:id="@+id/fab_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:src="@android:drawable/ic_popup_reminder"
         android:tint="#83DAF3FF"
         app:backgroundTint="#9FB0C3"

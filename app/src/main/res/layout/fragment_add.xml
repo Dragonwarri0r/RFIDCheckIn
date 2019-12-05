@@ -16,8 +16,8 @@
         android:id="@+id/adf_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="20dp">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -31,5 +31,13 @@
         android:layout_marginEnd="20dp"
         android:backgroundTintMode="add"
         android:src="@android:drawable/ic_input_add" />
+
+    <Button
+        android:id="@+id/delete_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kill_me"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="80dp"/>
 
 </FrameLayout>

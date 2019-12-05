@@ -23,7 +23,8 @@
         android:id="@+id/stu_id"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="7" />
+        android:layout_weight="7"
+        android:textAlignment="center"/>
     <TextView
         android:id="@+id/stu_time"
         android:layout_width="0dp"

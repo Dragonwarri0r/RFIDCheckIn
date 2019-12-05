@@ -17,6 +17,7 @@ import android.widget.Button;
 
 import com.fb.rfid.models.Student;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.litepal.crud.DataSupport;
 
@@ -35,6 +36,9 @@ public class AddFragment extends Fragment {
 
     RecyclerView recyclerView;
     CheckInAdapter checkInAdapter;
+    MyApplication myApplication;
+    List<Student> students;
+
 
 
     private OnFragmentInteractionListener mListener;
@@ -73,6 +77,7 @@ public class AddFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_add, container, false);
+        myApplication = (MyApplication) getActivity().getApplication();
         FloatingActionButton fab = view.findViewById(R.id.fab_add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,15 +86,20 @@ public class AddFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
-        MyApplication myApplication = (MyApplication) getActivity().getApplication();
+
+        Button btn_kill = view.findViewById(R.id.delete_all);
+        btn_kill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DataSupport.deleteAll(Student.class);
+                Snackbar.make(v,"kill all",Snackbar.LENGTH_SHORT).show();
+            }
+        });
 
         recyclerView = view.findViewById(R.id.adf_rv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        checkInAdapter = new CheckInAdapter(myApplication.getStudents(),getContext());
-        Log.e("fb", "onCreateView: "+myApplication.getStudents() );
-        recyclerView.setAdapter(checkInAdapter);
         return view;
     }
 
@@ -108,6 +118,21 @@ public class AddFragment extends Fragment {
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+
+        if (hidden) {//相当于Fragment的onResume，为true时，Fragment已经可见
+
+        } else {//相当于Fragment的onPause，为false时，Fragment不可见
+            students = myApplication.students;
+            checkInAdapter = new CheckInAdapter(students,getContext());
+            Log.e("fbi", "onCreateView: "+myApplication.students );
+            recyclerView.setAdapter(checkInAdapter);
+            checkInAdapter.notifyDataSetChanged();
+
         }
     }
 

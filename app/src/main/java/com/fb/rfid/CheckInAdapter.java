@@ -70,9 +70,9 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
         holder.tvTime.setText(student.getLastTime());
         holder.tvId.setText(student.getIdc());
         if (student.isHere()) {
-            holder.tvTag.setText("Here");
+            holder.tvTag.setText("在");
         } else {
-            holder.tvSex.setText("None");
+            holder.tvSex.setText("不");
         }
 
 

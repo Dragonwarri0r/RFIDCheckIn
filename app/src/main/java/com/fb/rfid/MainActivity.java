@@ -19,11 +19,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.litepal.LitePal;
-import org.litepal.LitePalApplication;
 import org.litepal.crud.DataSupport;
 
 import java.util.List;
@@ -99,17 +97,17 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
             public boolean handleMessage(@NonNull Message message) {
                 if(message.what == 1){
                     students = myApplication.getStudents();
-                    mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    if(now == mAddFragment){
-                        mTransaction.remove(mAddFragment);
-                        mTransaction.add(R.id.content,mAddFragment);
-                    }else{
-                        mTransaction.remove(mAddFragment);
-                        mTransaction.add(R.id.content,mAddFragment);
-                        mTransaction.hide(mAddFragment);
-                    }
-                    now = mCheckInFragment;
-                    mTransaction.commit();
+//                    mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                    if(now == mAddFragment){
+//                        mTransaction.remove(mAddFragment);
+//                        mTransaction.add(R.id.content,mAddFragment);
+//                    }else{
+//                        mTransaction.remove(mAddFragment);
+//                        mTransaction.add(R.id.content,mAddFragment);
+//                        mTransaction.hide(mAddFragment);
+//                    }
+//                    now = mCheckInFragment;
+//                    mTransaction.commit();
                 }
                 return true;
             }
