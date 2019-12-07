@@ -42,6 +42,10 @@ public class AddStudentDialog extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String id = ed_id.getText().toString();
+                if(id.equals("")){
+                    Toast.makeText(AddStudentDialog.this, "id can`t Null", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 List<Student> temp = DataSupport.select("idc").where("idc = ?", id).find(Student.class);
                 if (!temp.isEmpty()) {
                     Toast.makeText(AddStudentDialog.this, "用户已存在", Toast.LENGTH_SHORT).show();

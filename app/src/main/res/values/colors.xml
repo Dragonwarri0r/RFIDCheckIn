@@ -4,5 +4,8 @@
     <color name="colorPrimaryDark">#007788</color>
     <color name="colorAccent">#1BD860</color>
 
+    <color name="ok">#339966</color>
+    <color name="not_ok">#993366</color>
+
     <color name="colorWrite">#FFFFFF</color>
 </resources>

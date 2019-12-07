@@ -10,6 +10,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="your_students">学生们</string>
+    <string name="will_student">添加学生</string>
 
     <string name="checking">签到中...</string>
+
+    <string name="new_day">-开启新的一天-</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

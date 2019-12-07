@@ -9,8 +9,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
         android:text="@string/your_students"
         android:textAlignment="center"/>
+
+    <TextView
+        android:text="在?｜姓名｜性别｜           id            ｜     签到时间"
+        android:textAlignment="viewStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/adf_rv"
@@ -34,9 +45,10 @@
 
     <Button
         android:id="@+id/delete_all"
+        android:textColor="@color/not_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="kill_me"
+        android:text="从删库到跑路"
         android:layout_gravity="bottom"
         android:layout_marginBottom="80dp"/>
 

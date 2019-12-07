@@ -92,7 +92,9 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 DataSupport.deleteAll(Student.class);
-                Snackbar.make(v,"kill all",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(v,"跑路吧，骚年",Snackbar.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),AddStudentDialog.class);
+                getActivity().startActivity(intent);
             }
         });
 
@@ -100,6 +102,12 @@ public class AddFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        students = myApplication.students;
+        checkInAdapter = new CheckInAdapter(students,getContext());
+        Log.e("fbi", "onCreateView: "+myApplication.students );
+        recyclerView.setAdapter(checkInAdapter);
+        checkInAdapter.notifyDataSetChanged();
         return view;
     }
 
@@ -132,7 +140,6 @@ public class AddFragment extends Fragment {
             Log.e("fbi", "onCreateView: "+myApplication.students );
             recyclerView.setAdapter(checkInAdapter);
             checkInAdapter.notifyDataSetChanged();
-
         }
     }
 

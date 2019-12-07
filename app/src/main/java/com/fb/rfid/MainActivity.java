@@ -31,6 +31,7 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
     Fragment mAddFragment;
     Fragment mCheckInFragment;
     Fragment now;
+    Fragment mWebFragment;
     FragmentTransaction mTransaction;
     MyApplication myApplication;
     List<Student> students ;
@@ -69,7 +70,19 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
                     }
                     return true;
                 case R.id.navigation_view:
-                    Toast.makeText(MainActivity.this, "view", Toast.LENGTH_SHORT).show();
+                    if (now != mWebFragment) {
+                        mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                        if(mWebFragment == null){
+                            mWebFragment = new SchoolFragment();
+                            mTransaction.add(R.id.content,mWebFragment);
+                        }
+                        mTransaction.hide(now);
+                        mTransaction.show(mWebFragment);
+                        now = mWebFragment;
+                        mTransaction.commit();
+                    } else {
+                        Toast.makeText(MainActivity.this, "view", Toast.LENGTH_SHORT).show();
+                    }
                     return true;
             }
             return false;
@@ -97,7 +110,10 @@ public class MainActivity extends FragmentActivity implements AddFragment.OnFrag
             public boolean handleMessage(@NonNull Message message) {
                 if(message.what == 1){
                     students = myApplication.getStudents();
-//                    mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    mTransaction = getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    mTransaction.hide(now);
+                    mTransaction.show(now);
+                    mTransaction.commit();
 //                    if(now == mAddFragment){
 //                        mTransaction.remove(mAddFragment);
 //                        mTransaction.add(R.id.content,mAddFragment);

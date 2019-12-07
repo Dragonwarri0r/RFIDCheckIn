@@ -8,6 +8,7 @@ import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fb.rfid.Utils.NfcUtils;
@@ -27,16 +28,27 @@ public class CheckIngActivity extends AppCompatActivity {
     NfcAdapter mNfcAdapter;
     Button btnStop;
     TextView tv_welcome;
+    EditText et_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_ing);
+
+        final NfcUtils mNfc = new NfcUtils(this);
+        mNfcAdapter = NfcUtils.mNfcAdapter;
+        et_id = findViewById(R.id.et_id_check);
+
         btnStop = findViewById(R.id.stop);
         btnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             finish();
+                if(!et_id.getText().toString().equals("")){
+                    idc = et_id.getText().toString();
+                    checkin(idc);
+                }else{
+                    finish();
+                }
             }
         });
         tv_welcome = findViewById(R.id.welcome);
@@ -58,19 +70,23 @@ public class CheckIngActivity extends AppCompatActivity {
         //调用工具方法，读取NFC数据
         try {
             idc = NfcUtils.readNFCId(intent);
-            List<Student> students = DataSupport.select("idc").where("idc = ?", idc).find(Student.class);
-            if(students!= null && students.size()>0){
-                String name = students.get(0).getName();
-                tv_welcome.setText("Welcome "+name+" !");
-                String time = new TimeUtils().getTime();
-                String date = new TimeUtils().getDate();
-                ContentValues contentValues = new ContentValues();
-                contentValues.put("isHere",true);
-                contentValues.put("lastTime",time);
-                DataSupport.updateAll(Student.class,contentValues,"idc = ? ",idc);
-            }
+            checkin(idc);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void checkin(String idc){
+        List<Student> students = DataSupport.select("idc","name").where("idc = ?", idc).find(Student.class);
+        if(students!= null && students.size()>0){
+            String name = students.get(0).getName();
+            tv_welcome.setText("Welcome "+name+" !");
+            String time = new TimeUtils().getTime();
+            String date = new TimeUtils().getDate();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("isHere",true);
+            contentValues.put("lastTime",time);
+            DataSupport.updateAll(Student.class,contentValues,"idc = ? ",idc);
         }
     }
 }

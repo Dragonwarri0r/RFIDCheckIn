@@ -71,8 +71,10 @@ public class CheckInAdapter extends RecyclerView.Adapter<CheckInAdapter.ViewHold
         holder.tvId.setText(student.getIdc());
         if (student.isHere()) {
             holder.tvTag.setText("在");
+            holder.tvTag.setTextColor(mcontext.getResources().getColor(R.color.ok) );
         } else {
-            holder.tvSex.setText("不");
+            holder.tvTag.setText("不");
+            holder.tvTag.setTextColor(mcontext.getResources().getColor(R.color.not_ok));
         }
 
 

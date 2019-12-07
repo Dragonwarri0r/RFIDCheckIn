@@ -30,6 +30,12 @@
         android:text="STOP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_id_check"
+        android:inputType="number"
+        android:hint="id输入后点STOP也可以签到"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

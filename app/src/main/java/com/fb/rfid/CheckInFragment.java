@@ -2,6 +2,8 @@ package com.fb.rfid;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,8 @@ import android.widget.Toast;
 import com.fb.rfid.models.Student;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.litepal.crud.DataSupport;
+
 import java.util.List;
 
 public class CheckInFragment extends Fragment {
@@ -29,7 +33,7 @@ public class CheckInFragment extends Fragment {
     CheckInAdapter checkInAdapter;
     View rootView;
     FloatingActionButton fab_start;
-    Button btn_stop;
+    Button newDay;
     MyApplication myApplication;
 
     int here = 0;
@@ -56,6 +60,19 @@ public class CheckInFragment extends Fragment {
 
         tv_here = rootView.findViewById(R.id.ci_child_here);
         tv_all = rootView.findViewById(R.id.ci_child_shoud_here);
+        newDay = rootView.findViewById(R.id.new_day);
+
+        newDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("isHere",false);
+                DataSupport.updateAll(Student.class,contentValues);
+                Toast.makeText(getContext(), "请重启app", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
+
+            }
+        });
 
 
         fab_start = rootView.findViewById(R.id.fab_start);
@@ -64,7 +81,8 @@ public class CheckInFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "start", Toast.LENGTH_SHORT).show();
                 fab_start.hide();
-                btn_stop.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(getContext(),CheckIngActivity.class);
+                startActivity(intent);
             }
         });
 

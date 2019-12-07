@@ -9,8 +9,8 @@ public class TimeUtils {
     String time = date.toLocaleString();
 
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年-MM月dd日 E");
-    SimpleDateFormat timeFormat = new SimpleDateFormat("HH时mm分ss秒 E");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年-MM月dd日");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("HH时mm分ss秒");
 
     public String getDate() {
         return dateFormat.format(date);

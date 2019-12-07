@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="15sp"/>
 
     <LinearLayout
         android:id="@+id/mid_panel"
@@ -93,11 +94,12 @@
         app:layout_constraintRight_toRightOf="@+id/mid_panel"
         app:layout_constraintTop_toTopOf="@+id/mid_panel" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cif_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="140dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:layout_constraintTop_toBottomOf="@+id/mid_panel"
@@ -105,6 +107,27 @@
         app:layout_constraintRight_toRightOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:text="在?｜姓名｜性别｜           id            ｜     签到时间"
+        android:textAlignment="viewStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/cif_rv"/>
+
+    <Button
+        android:id="@+id/new_day"
+        android:text="@string/new_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWrite"
+        android:background="#9FB0C3"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintLeft_toLeftOf="@+id/cif_rv"
+        app:layout_constraintRight_toRightOf="@+id/cif_rv"
+        app:layout_constraintBottom_toBottomOf="@+id/cif_rv"/>
 
 
 
