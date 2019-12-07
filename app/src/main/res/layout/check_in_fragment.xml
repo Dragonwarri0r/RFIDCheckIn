@@ -92,19 +92,6 @@
         app:layout_constraintLeft_toLeftOf="@+id/mid_panel"
         app:layout_constraintRight_toRightOf="@+id/mid_panel"
         app:layout_constraintTop_toTopOf="@+id/mid_panel" />
-    <Button
-        android:id="@+id/btn_stop"
-        android:text="Stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:src="@android:drawable/ic_popup_reminder"
-        android:tint="#83DAF3FF"
-        app:backgroundTint="#9FB0C3"
-        app:layout_constraintLeft_toLeftOf="@+id/mid_panel"
-        app:layout_constraintRight_toRightOf="@+id/mid_panel"
-        app:layout_constraintTop_toTopOf="@+id/mid_panel"
-        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cif_rv"

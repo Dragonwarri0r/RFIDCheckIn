@@ -17,10 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddStudentDialog"
-            android:theme="@style/Theme.AppCompat.DayNight.Dialog"/>
-
-
+        <activity android:name=".CheckIngActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.Dialog"/>
+        <activity
+            android:name=".AddStudentDialog"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -30,15 +31,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity-alias
-            android:targetActivity="com.fb.rfid.MainActivity"
             android:name=".MainMenuAlias"
             android:label="@string/app_name"
-            android:launchMode="singleTop" >
+            android:launchMode="singleTop"
+            android:targetActivity=".MainActivity">
+
             <!-- NFC Tech Filter -->
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />

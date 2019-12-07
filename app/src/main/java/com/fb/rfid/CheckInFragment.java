@@ -67,15 +67,6 @@ public class CheckInFragment extends Fragment {
                 btn_stop.setVisibility(View.VISIBLE);
             }
         });
-        btn_stop = rootView.findViewById(R.id.btn_stop);
-        btn_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "stop", Toast.LENGTH_SHORT).show();
-                btn_stop.setVisibility(View.GONE);
-                fab_start.show();
-            }
-        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -113,6 +104,12 @@ public class CheckInFragment extends Fragment {
             tv_all.setText(allStudents + "");
 
         }
+    }
+
+    @Override
+    public void onResume() {
+        fab_start.show();
+        super.onResume();
     }
 
     public int getHereStudents() {

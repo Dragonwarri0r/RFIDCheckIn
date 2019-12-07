@@ -10,4 +10,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="your_students">学生们</string>
+
+    <string name="checking">签到中...</string>
 </resources>
